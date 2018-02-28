@@ -33,5 +33,27 @@ namespace RecipeBox.Models
         conn.Dispose();
       }
     }
+
+    // public override bool Equals(System.Object otherTag)
+    // {
+    //   if (!(otherTag is Tag))
+    //   {
+    //     return false;
+    //   }
+    //   else
+    //   {
+    //     Tag newTag = (Tag) otherTag;
+    //     bool idEquality = (this.GetId() == newTag.GetId());
+    //     bool nameEquality = (this.GetName() == newTag.GetName());
+    //     return (idEquality && nameEquality);
+    //   }
+    // }
+    //
+    // public override int GetHashCode()
+    // {
+    //   return this.GetId().GetHashCode();
+    // }
+
+
   }
 }

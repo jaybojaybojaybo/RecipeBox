@@ -18,5 +18,21 @@ namespace RecipeBox.Tests
         Ingredient.DeleteAll();
         Recipe.DeleteAll();
       }
+
+      [TestMethod]
+      public void Equals_ReturnsTrueIfNamesAreTheSame_Ingredient()
+      {
+        // Arrange
+        Ingredient firstIngredient = new Ingredient("Artichoke");
+        Ingredient secondIngredient = new Ingredient("Artichoke");
+
+        //Act
+        firstIngredient.Save();
+        secondIngredient.Save();
+
+
+        // Assert
+        Assert.AreEqual(true, firstIngredient.GetName().Equals(secondIngredient.GetName()));
+      }
   }
 }

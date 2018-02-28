@@ -12,24 +12,24 @@
 
 ### Examples:
 
-User can create an ingredient:
+* User can create an ingredient:
   example input: "artichoke"
   example output: "artichoke"
 
-User can find an ingredient by searching:
+* User can find an ingredient by searching:
   example search input: "artichoke"
   example search output: "artichoke"
 
-User can update an ingredient:
+* User can update an ingredient:
   existing: "artichoke"
   example input: "artichokes"
   example output: "artichokes"
 
-User can delete an ingredient:
+* User can delete an ingredient:
   example input: "artichoke"
   example output:
 
-User can create a recipe:
+* User can create a recipe:
   example input:
     name:"Roasted Artichokes"
     ingredient: "artichoke"
@@ -43,11 +43,11 @@ User can create a recipe:
     "olive oil"
     "10 min on high ..."
 
-User can find a recipe using search:
+* User can find a recipe using search:
   example input:"Artichokes"
   example output:"Roasted Artichokes"
 
-User can update a recipe:
+* User can update a recipe:
   existing:
     name:"Roasted Artichokes"
     ingredient: "artichoke"
@@ -63,7 +63,7 @@ User can update a recipe:
     "red pepper"
     "10 min on high ..."
 
-User can delete a recipe:
+* User can delete a recipe:
   example input:
     name:"Roasted Artichokes"
     ingredient: "artichoke"
@@ -72,32 +72,32 @@ User can delete a recipe:
     instructions: "10 min on high ..."
   example output:""
 
-User can create tags for recipes:
+* User can create tags for recipes:
   example input: (for "Roasted Artichokes") "Italian"
   example output: "Italian"
 
-User can find tags for recipes using search:
+* User can find tags for recipes using search:
   example input: "Italian"
   example output: "Italian"
 
-User can update tags for recipes:
+* User can update tags for recipes:
   existing: (for "Roasted Artichokes") "Italian"
   example input: "Italian fusion"
   example output: "Italian fusion"
 
-User can delete tags for recipes:
+* User can delete tags for recipes:
   example input: "Italian"
   example output: ""
 
-User can rate recipe:
+* User can rate recipe:
   example input: (for "Roasted Artichokes") - 5 stars
   example output: 5 stars
 
-User can search recipes by rating:
+* User can search recipes by rating:
   example input: 5 stars
   example output: "Roasted Artichokes"
 
-User can update rating for recipe:
+* User can update rating for recipe:
   existing: 5 stars
   example input: 4 stars
   example output: 4 stars
