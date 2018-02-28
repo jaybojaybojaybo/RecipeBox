@@ -34,5 +34,19 @@ namespace RecipeBox.Tests
         // Assert
         Assert.AreEqual(true, firstIngredient.GetName().Equals(secondIngredient.GetName()));
       }
+
+      [TestMethod]
+      public void Find_FindsIngredientInDatabase_Ingredient()
+      {
+        //Arrange
+        Ingredient testIngredient = new Ingredient("Artichoke");
+        testIngredient.Save();
+
+        //Act
+        Ingredient foundIngredient = Ingredient.Find(testIngredient.GetId());
+
+        //Assert
+        Assert.AreEqual(testIngredient, foundIngredient);
+      }
   }
 }

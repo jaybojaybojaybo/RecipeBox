@@ -93,6 +93,43 @@ namespace RecipeBox.Models
       }
     }
 
+    public static Ingredient Find(int id)
+    {
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT * FROM ingredients WHERE id = @searchId;";
+
+     MySqlParameter searchId = new MySqlParameter();
+     searchId.ParameterName = "@searchId";
+     searchId.Value = id;
+     cmd.Parameters.Add(searchId);
+
+     var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+     int ingredientId = 0;
+     string ingredientName = "";
+
+     while (rdr.Read())
+     {
+       ingredientId = rdr.GetInt32(0);
+       ingredientName = rdr.GetString(1);
+     }
+
+     Ingredient foundIngredient= new Ingredient(ingredientName, ingredientId);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+
+     return foundIngredient;
+    }
+
+
+
 
 
   }
