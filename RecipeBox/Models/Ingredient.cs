@@ -9,12 +9,12 @@ namespace RecipeBox.Models
   public class Ingredient
   {
     private int _id;
-    private string _ingredientName;
+    private string _name;
 
     public Ingredient(string ingredientName, int Id = 0)
     {
       _id = Id;
-      _ingredientName = ingredientName;
+      _name = ingredientName;
     }
 
     public static void DeleteAll()
@@ -66,12 +66,12 @@ namespace RecipeBox.Models
 
     public string GetName()
     {
-      return _ingredientName;
+      return _name;
     }
 
     public void SetName(string newIngredientName)
     {
-      _ingredientName = newIngredientName;
+      _name = newIngredientName;
     }
 
     public void Save()
@@ -81,7 +81,7 @@ namespace RecipeBox.Models
 
      var cmd = conn.CreateCommand() as MySqlCommand;
     cmd.CommandText = @"INSERT INTO ingredients (name) VALUES (@IngredientName);";
-     cmd.Parameters.Add(new MySqlParameter("@IngredientName", this._ingredientName));
+     cmd.Parameters.Add(new MySqlParameter("@IngredientName", this._name));
 
      cmd.ExecuteNonQuery();
      _id = (int) cmd.LastInsertedId;
@@ -128,9 +128,31 @@ namespace RecipeBox.Models
      return foundIngredient;
     }
 
+    public void Edit(string newName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE ingredients SET name = @newName WHERE id = @searchId;";
 
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
 
+      MySqlParameter name = new MySqlParameter();
+      name.ParameterName = "@newname";
+      name.Value = newName;
+      cmd.Parameters.Add(name);
 
+      cmd.ExecuteNonQuery();
+      _name = newName;
 
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }

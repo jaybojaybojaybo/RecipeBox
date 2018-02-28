@@ -48,5 +48,22 @@ namespace RecipeBox.Tests
         //Assert
         Assert.AreEqual(testIngredient, foundIngredient);
       }
+
+      [TestMethod]
+      public void Edit_UpdateIngredientInDatabase_String()
+      {
+        //Arrange
+        string firstName = "Artichoke";
+        Ingredient testIngredient = new Ingredient(firstName);
+        testIngredient.Save();
+        string secondName = "Red Pepper";
+
+        //Act
+        testIngredient.Edit(secondName);
+        string result = Ingredient.Find(testIngredient.GetId()).GetName();
+
+        //Assert
+        Assert.AreEqual(secondName, result);
+      }
   }
 }
