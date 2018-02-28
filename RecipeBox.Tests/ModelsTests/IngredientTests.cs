@@ -65,5 +65,26 @@ namespace RecipeBox.Tests
         //Assert
         Assert.AreEqual(secondName, result);
       }
+
+      [TestMethod]
+      public void Delete_DeleteOneIngredientInDatabase_True()
+      {
+        //Arrange
+        string firstName = "Artichokes";
+        string secondName = "Red Peppers";
+        Ingredient firstIngredient = new Ingredient(firstName);
+        Ingredient secondIngredient = new Ingredient(secondName);
+        List<Ingredient> testList = new List<Ingredient>{secondIngredient};
+        firstIngredient.Save();
+        secondIngredient.Save();
+
+        //Act
+        int firstId = firstIngredient.GetId();
+        firstIngredient.DeleteIngredient(firstId);
+        List<Ingredient> compareList = Ingredient.GetAll();
+        Console.WriteLine(compareList.Count);
+        //Assert
+        Assert.AreEqual(testList.Count, compareList.Count);
+      }
   }
 }
