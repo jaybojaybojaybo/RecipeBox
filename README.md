@@ -106,4 +106,4 @@ User can update rating for recipe:
 
 
 
-![](https://i.imgur.com/ugcnc2M.png)
+![](https://imgur.com/ugcnc2M.png)

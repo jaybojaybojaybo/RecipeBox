@@ -9,7 +9,7 @@ namespace RecipeBox.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      return View("Index", RecipeBoxModel.GetString());
+      return View();
     }
   }
 }
