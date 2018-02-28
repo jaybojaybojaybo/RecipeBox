@@ -17,6 +17,7 @@ namespace RecipeBox.Tests
       {
         Tag.DeleteAll();
         Recipe.DeleteAll();
+        tags_recipes.DeleteAll();
       }
 
       [TestMethod]
@@ -85,6 +86,51 @@ namespace RecipeBox.Tests
         Console.WriteLine(compareList.Count);
         //Assert
         Assert.AreEqual(testList.Count, compareList.Count);
+      }
+
+      [TestMethod]
+      public void AddRecipe_AddsRecipeToTag_RecipeList()
+      {
+        //Arrange
+        Tag testTag1 = new Tag("Olive Oil");
+        testTag1.Save();
+
+        Recipe firstRecipe =  new Recipe("Roasted Artichokes", "5", "cook");
+        firstRecipe.Save();
+        Recipe secondRecipe = new Recipe("Spaghetti", "3", "boil");
+        secondRecipe.Save();
+        List<Recipe> testList = new List<Recipe>{firstRecipe, secondRecipe};
+
+        //Act
+        testTag1.AddRecipe(firstRecipe);
+        testTag1.AddRecipe(secondRecipe);
+        List<Recipe> result = testTag1.GetRecipes();
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+      }
+
+      [TestMethod]
+      public void GetRecipes_ReturnsAllTagRecipes_RecipeList()
+      {
+        //Arrange
+        Tag testTag1 = new Tag("Artichoke");
+        testTag1.Save();
+
+        Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
+        testRecipe1.Save();
+
+        Recipe testRecipe2 = new Recipe("Spaghetti", "3", "boil");
+        testRecipe2.Save();
+
+        //Act
+        testTag1.AddRecipe(testRecipe1);
+        List<Recipe> result = testTag1.GetRecipes();
+        List<Recipe> testList = new List<Recipe> {testRecipe1};
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+        // CollectionAssert.AreEqual(testList, result);
       }
   }
 }

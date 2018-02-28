@@ -110,28 +110,28 @@ namespace RecipeBox.Tests
         Assert.AreEqual(testList.Count, result.Count);
       }
 
-      // [TestMethod]
-      // public void GetRecipes_ReturnsAllIngredientRecipes_RecipeList()
-      // {
-      //   //Arrange
-      //   Ingredient testIngredient1 = new Ingredient("Artichoke");
-      //   testIngredient1.Save();
-      //
-      //   Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
-      //   testRecipe1.Save();
-      //
-      //   Recipe testRecipe2 = new Recipe("Spaghetti", "3", "boil");
-      //   testRecipe2.Save();
-      //
-      //   //Act
-      //   testIngredient1.AddRecipe(testRecipe1);
-      //   List<Recipe> result = testIngredient1.GetRecipes();
-      //   List<Recipe> testList = new List<Recipe> {testRecipe1};
-      //
-      //   //Assert
-      //   Assert.AreEqual(testList.Count, result.Count);
-      //   // CollectionAssert.AreEqual(testList, result);
-      // }
+      [TestMethod]
+      public void GetRecipes_ReturnsAllIngredientRecipes_RecipeList()
+      {
+        //Arrange
+        Ingredient testIngredient1 = new Ingredient("Artichoke");
+        testIngredient1.Save();
+
+        Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
+        testRecipe1.Save();
+
+        Recipe testRecipe2 = new Recipe("Spaghetti", "3", "boil");
+        testRecipe2.Save();
+
+        //Act
+        testIngredient1.AddRecipe(testRecipe1);
+        List<Recipe> result = testIngredient1.GetRecipes();
+        List<Recipe> testList = new List<Recipe> {testRecipe1};
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+        // CollectionAssert.AreEqual(testList, result);
+      }
 
 
   }
