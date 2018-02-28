@@ -228,10 +228,10 @@ namespace RecipeBox.Models
           JOIN recipes ON (ingredients_recipes.recipe_id = recipes.id)
           WHERE ingredients.id = @IngredientId;";
 
-        MySqlParameter itemIdParameter = new MySqlParameter();
-        itemIdParameter.ParameterName = "@IngredientId";
-        itemIdParameter.Value = _id;
-        cmd.Parameters.Add(itemIdParameter);
+        MySqlParameter ingredientIdParameter = new MySqlParameter();
+        ingredientIdParameter.ParameterName = "@IngredientId";
+        ingredientIdParameter.Value = _id;
+        cmd.Parameters.Add(ingredientIdParameter);
 
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
 

@@ -18,6 +18,8 @@ namespace RecipeBox.Tests
         Recipe.DeleteAll();
         Ingredient.DeleteAll();
         Tag.DeleteAll();
+        ingredients_recipes.DeleteAll();
+        tags_recipes.DeleteAll();
       }
 
       [TestMethod]
@@ -117,6 +119,103 @@ namespace RecipeBox.Tests
         Console.WriteLine(compareList.Count);
         //Assert
         Assert.AreEqual(testList.Count, compareList.Count);
+      }
+
+      [TestMethod]
+      public void AddIngredient_AddsIngredientToRecipe_IngredientList()
+      {
+        //Arrange
+        Ingredient testIngredient1 = new Ingredient("Olive Oil");
+        testIngredient1.Save();
+        Ingredient testIngredient2 = new Ingredient("Red Peppers");
+        testIngredient2.Save();
+
+        Recipe firstRecipe =  new Recipe("Roasted Artichokes", "5", "cook");
+        firstRecipe.Save();
+
+        List<Ingredient> testList = new List<Ingredient>{testIngredient1, testIngredient2};
+
+        //Act
+        firstRecipe.AddIngredient(testIngredient1);
+        firstRecipe.AddIngredient(testIngredient2);
+        List<Ingredient> result = firstRecipe.GetIngredients();
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+      }
+
+      [TestMethod]
+      public void GetIngredients_ReturnsAllIngredientRecipes_IngredientList()
+      {
+        //Arrange
+        Ingredient testIngredient1 = new Ingredient("Artichoke");
+        testIngredient1.Save();
+
+        Ingredient testIngredient2 = new Ingredient("Red Peppers");
+        testIngredient2.Save();
+
+        Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
+        testRecipe1.Save();
+
+
+        //Act
+        testRecipe1.AddIngredient(testIngredient1);
+        testRecipe1.AddIngredient(testIngredient2);
+        List<Ingredient> result = testRecipe1.GetIngredients();
+        Console.WriteLine(result[1].GetName());
+        List<Ingredient> testList = new List<Ingredient> {testIngredient1, testIngredient2};
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+        // CollectionAssert.AreEqual(testList, result);
+      }
+
+      [TestMethod]
+      public void AddTag_AddsTagToRecipe_TagList()
+      {
+        //Arrange
+        Tag testTag1 = new Tag("Olive Oil");
+        testTag1.Save();
+        Tag testTag2 = new Tag("Red Peppers");
+        testTag2.Save();
+
+        Recipe firstRecipe =  new Recipe("Roasted Artichokes", "5", "cook");
+        firstRecipe.Save();
+
+        List<Tag> testList = new List<Tag>{testTag1, testTag2};
+
+        //Act
+        firstRecipe.AddTag(testTag1);
+        firstRecipe.AddTag(testTag2);
+        List<Tag> result = firstRecipe.GetTags();
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+      }
+
+      [TestMethod]
+      public void GetTags_ReturnsAllTagRecipes_TagList()
+      {
+        //Arrange
+        Tag testTag1 = new Tag("Artichoke");
+        testTag1.Save();
+
+        Tag testTag2 = new Tag("Red Peppers");
+        testTag2.Save();
+
+        Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
+        testRecipe1.Save();
+
+
+        //Act
+        testRecipe1.AddTag(testTag1);
+        testRecipe1.AddTag(testTag2);
+        List<Tag> result = testRecipe1.GetTags();
+        List<Tag> testList = new List<Tag> {testTag1, testTag2};
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+        // CollectionAssert.AreEqual(testList, result);
       }
   }
 
