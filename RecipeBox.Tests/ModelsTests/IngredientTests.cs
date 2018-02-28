@@ -17,6 +17,7 @@ namespace RecipeBox.Tests
       {
         Ingredient.DeleteAll();
         Recipe.DeleteAll();
+        ingredients_recipes.DeleteAll();
       }
 
       [TestMethod]
@@ -86,5 +87,52 @@ namespace RecipeBox.Tests
         //Assert
         Assert.AreEqual(testList.Count, compareList.Count);
       }
+
+      [TestMethod]
+      public void AddRecipe_AddsRecipeToIngredient_RecipeList()
+      {
+        //Arrange
+        Ingredient testIngredient1 = new Ingredient("Olive Oil");
+        testIngredient1.Save();
+
+        Recipe firstRecipe =  new Recipe("Roasted Artichokes", "5", "cook");
+        firstRecipe.Save();
+        Recipe secondRecipe = new Recipe("Spaghetti", "3", "boil");
+        secondRecipe.Save();
+        List<Recipe> testList = new List<Recipe>{firstRecipe, secondRecipe};
+
+        //Act
+        testIngredient1.AddRecipe(firstRecipe);
+        testIngredient1.AddRecipe(secondRecipe);
+        List<Recipe> result = testIngredient1.GetRecipes();
+
+        //Assert
+        Assert.AreEqual(testList.Count, result.Count);
+      }
+
+      // [TestMethod]
+      // public void GetRecipes_ReturnsAllIngredientRecipes_RecipeList()
+      // {
+      //   //Arrange
+      //   Ingredient testIngredient1 = new Ingredient("Artichoke");
+      //   testIngredient1.Save();
+      //
+      //   Recipe testRecipe1 = new Recipe("Roasted Artichokes", "5", "cook");
+      //   testRecipe1.Save();
+      //
+      //   Recipe testRecipe2 = new Recipe("Spaghetti", "3", "boil");
+      //   testRecipe2.Save();
+      //
+      //   //Act
+      //   testIngredient1.AddRecipe(testRecipe1);
+      //   List<Recipe> result = testIngredient1.GetRecipes();
+      //   List<Recipe> testList = new List<Recipe> {testRecipe1};
+      //
+      //   //Assert
+      //   Assert.AreEqual(testList.Count, result.Count);
+      //   // CollectionAssert.AreEqual(testList, result);
+      // }
+
+
   }
 }

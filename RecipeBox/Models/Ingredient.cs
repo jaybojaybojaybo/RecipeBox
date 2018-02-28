@@ -199,5 +199,60 @@ namespace RecipeBox.Models
         conn.Dispose();
       }
     }
+
+    public void AddRecipe(Recipe newRecipe)
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"INSERT INTO ingredients_recipes (recipe_id, ingredient_id) VALUES (@RecipeId, @IngredientId);";
+
+        cmd.Parameters.Add(new MySqlParameter("@RecipeId", newRecipe.GetId()));
+        cmd.Parameters.Add(new MySqlParameter("@IngredientId", _id));
+
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+    }
+
+    public List<Recipe> GetRecipes()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT recipes.* FROM ingredients
+          JOIN ingredients_recipes ON (ingredients.id = ingredients_recipes.ingredient_id)
+          JOIN recipes ON (ingredients_recipes.recipe_id = recipes.id)
+          WHERE ingredients.id = @IngredientId;";
+
+        MySqlParameter itemIdParameter = new MySqlParameter();
+        itemIdParameter.ParameterName = "@IngredientId";
+        itemIdParameter.Value = _id;
+        cmd.Parameters.Add(itemIdParameter);
+
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+        List<Recipe> ingredients = new List<Recipe> {};
+        while(rdr.Read())
+        {
+            int recipeId = rdr.GetInt32(0);
+            string recipeName = rdr.GetString(1);
+            string recipeRating = rdr.GetString(2);
+            string recipeInstruction = rdr.GetString(3);
+            Recipe foundRecipe = new Recipe(recipeName, recipeRating, recipeInstruction, recipeId);
+            ingredients.Add(foundRecipe);
+        }
+        rdr.Dispose();
+
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return ingredients;
+    }
   }
 }
