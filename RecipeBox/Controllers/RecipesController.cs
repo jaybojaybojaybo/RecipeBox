@@ -17,7 +17,15 @@ namespace RecipeBox.Controllers
     [HttpGet("/recipes/create")]
     public ActionResult CreateForm()
     {
-      return View();
+      Dictionary<string, object> model = new Dictionary<string, object> {};
+
+      List<Recipe> allRecipes = Recipe.GetAll();
+      List<Ingredient> allIngredients = Ingredient.GetAll();
+      List<Tag> allTags = Tag.GetAll();
+      model.Add("allRecipes", allRecipes);
+      model.Add("allIngredients", allIngredients);
+      model.Add("allTags", allTags);
+      return View(model);
     }
 
     [HttpPost("/recipes/create")]

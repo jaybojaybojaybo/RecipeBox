@@ -376,5 +376,15 @@ namespace RecipeBox.Models
         }
         return recipes;
     }
+
+      public void BreakString()
+      {
+        string[] separators = {",", " ", "."};
+        string[] words = _ingredient.ToString().Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        for (int index = 0; index < words.Length; index ++)
+        {
+            _instruction.Add(words[index]);
+        }
+      }
   }
 }

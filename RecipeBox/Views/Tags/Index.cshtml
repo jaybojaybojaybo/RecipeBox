@@ -2,4 +2,32 @@
   Layout = "_Layout";
 }
 
-<h2>Tags</h2>
+
+@if(@Model.Count == 0)
+{
+  <h3><i>Uh oh looks like there is no Tags for you to look at...</i></h3>
+}
+
+@if(@Model.Count > 0)
+{
+
+<table class="table">
+  <thead>
+    <tr>
+        <th>Tag Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(var tag in @Model)
+  {
+    <tr>
+       <td><a href="/tags/@tag.GetId()">@tag.GetName()</a></td>
+
+       <td><a href="/tags/@tag.GetId()/delete" class="btn btn-danger">x</a></td>
+     </tr>
+  }
+  </tbody>
+  </table>
+}
+
+<a href="/tags/create" class="btn btn-primary btn-lg btn-block btn-danger">ADD NEW TAG</a>

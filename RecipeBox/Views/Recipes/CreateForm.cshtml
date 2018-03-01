@@ -7,19 +7,59 @@
     <label for="name"><h4>Recipe Name:</h4></label>
     <input type="text" name="name" class="form-control">
     <br>
-    <label for="difficulty-rating"><h4>Difficulty: </h4></label>
+    <label for="difficulty-rating"><h4>Difficulty <i>(5 Wallaces means a challenging dish)<i>: </h4></label>
     <fieldset data-role="controlgroup" data-type="horizontal">
-      <div class="rating text-left">
-        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="1" value="1"><div class="hideFlame">&#x1F525;</div></span>
-        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="2" value="2">&#x1F525;</span>
-        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="3" value="3">&#x1F525;</span>
-        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="4" value="4">&#x1F525;</span>
-        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="5" value="5">&#x1F525;</span>
-      </div>
+        <input type="radio" id="rating" name="rating" class="form-control" value="1">
+        <label for="rating">1</label>
+        <input type="radio" id="rating2" name="rating" class="form-control" value="2">
+        <label for="rating2">2</label>
+        <input type="radio" id="rating3" name="rating" class="form-control" value="3">
+        <label for="rating3">3</label>
+        <input type="radio" id="rating4" name="rating" class="form-control" value="4">
+        <label for="rating4">4</label>
+        <input type="radio" id="rating5" name="rating" class="form-control" value="5">
+        <label for="rating5">5</label>
     </fieldset>
-        <label for="name"><h4>Instructions:</h4></label>
-        <input type="text" name="name" class="form-control">
-      </div>
+    <br>
+    <br>
+    <label for='ingredientList'>Select an Ingredient</label>
+    <select id='ingredientList' name='ingredientList' type='text' class="form-control">
+      @foreach (var ingredient in @Model["allIngredients"])
+      {
+        @if(@Model["allIngredients"].Count == 0)
+        {
+          <h4><a href="/ingredients/create">Create Ingredient</a></h4>
+        }
+        @if(@Model["allIngredients"].Count > 0)
+        {
+          <option value='@ingredient.GetId()'>@ingredient.GetName()</option>
+        }
+      }
+
+      <option value="newIngredient"><a href="/ingredients/create">Add New Ingredient</a></option>
+    </select>
+    <br>
+    <label for="instructions"><h4>Instructions:</h4></label>
+    <textarea class="form-control" id="instructions" rows="3"></textarea>
+    <br>
+    <br>
+    <label for='tagList'>Add a Tag</label>
+    <select id='tagList' name='tagList' type='text' class="form-control">
+      @foreach (var tag in @Model["allTags"])
+      {
+        @if(@Model["allTags"].Count == 0)
+        {
+          <h4><a href="/tags/create">Create Tag</a></h4>
+        }
+        @if(@Model["allTags"].Count > 0)
+        {
+          <option value='@tag.GetId()'>@tag.GetName()</option>
+        }
+      }
+
+      <option value="newTag"><a href="/tags/create">Add New Tag</a></option>
+    </select>
+    <br>
 
   <button type="submit" class="btn btn-primary btn-lg btn-block btn-success">Add Recipe</button>
 </form>

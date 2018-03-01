@@ -46,21 +46,55 @@ h3 {
   padding: 3em;
 }
 
-.rating {
-  unicode-bidi: bidi-override;
+input[type=radio] {
+display:none;
+}
+
+
+input[type="radio"] + label{
+  background-image: url("https://i.imgur.com/7XGyZKE.png");
+  width:25px;
+  height:25px;
+  display:inline-block;
+  background-size: 25px 25px;
+}
+
+input[type="radio"]:hover + label {
+  background-image: url("https://i.imgur.com/CHvUhzL.png");
+  width:25px;
+  height:25px;
+  display:inline-block;
+  background-size: 25px 25px;
+  color: white;
+}
+
+input[type="radio"]:checked + label {
+  background-image: url("https://i.imgur.com/CHvUhzL.png");
+  width:25px;
+  height:25px;
+  display:inline-block;
+  background-size: 25px 25px;
+  color: #efc45f;
+}
+
+.cool {
   direction: rtl;
   font-size: 3em;
   margin-left: 1em;
 }
-.rating > span {
+
+.cool > span {
   display: inline-block;
   position: relative;
   width: 1.1em;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   content: "\1F373";
-   position: relative;
+
+.cool > span:hover:before,
+.cool > span:hover ~ span:before {
+  width:25px;
+  height:25px;
+  display:inline-block;
+  background-size: 25px 25px;
 }
 
 /*input.hideRadio[type="radio"]{

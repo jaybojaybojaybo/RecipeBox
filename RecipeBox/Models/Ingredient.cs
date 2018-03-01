@@ -101,10 +101,7 @@ namespace RecipeBox.Models
      var cmd = conn.CreateCommand() as MySqlCommand;
      cmd.CommandText = @"SELECT * FROM ingredients WHERE id = @searchId;";
 
-     MySqlParameter searchId = new MySqlParameter();
-     searchId.ParameterName = "@searchId";
-     searchId.Value = id;
-     cmd.Parameters.Add(searchId);
+     cmd.Parameters.Add(new MySqlParameter("@searchId", id));
 
      var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
@@ -125,7 +122,7 @@ namespace RecipeBox.Models
         conn.Dispose();
       }
 
-     return foundIngredient;
+      return foundIngredient;
     }
 
     public void Edit(string newName)
@@ -254,5 +251,6 @@ namespace RecipeBox.Models
         }
         return ingredients;
     }
+
   }
 }
