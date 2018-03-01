@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace RecipeBox.Controllers
 {
-  public class HomeController : Controller
+  public class IngredientsController : Controller
   {
-
-    [HttpGet("/")]
+    [HttpGet("/ingredients")]
     public ActionResult Index()
     {
-      return View();
+      List<Ingredient> allIngredients = Ingredient.GetAll();
+      return View(allIngredients);
     }
   }
 }

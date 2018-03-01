@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+<form method="post" action="/recipes/create">
+  <div class="form-group">
+    <label for="name"><h4>Recipe Name:</h4></label>
+    <input type="text" name="name" class="form-control">
+    <br>
+    <label for="difficulty-rating"><h4>Difficulty: </h4></label>
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <div class="rating text-left">
+        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="1" value="1"><div class="hideFlame">&#x1F525;</div></span>
+        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="2" value="2">&#x1F525;</span>
+        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="3" value="3">&#x1F525;</span>
+        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="4" value="4">&#x1F525;</span>
+        <span><input type="radio" class="hideRadio" name="difficulty-rating" id="5" value="5">&#x1F525;</span>
+      </div>
+    </fieldset>
+        <label for="name"><h4>Instructions:</h4></label>
+        <input type="text" name="name" class="form-control">
+      </div>
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block btn-success">Add Recipe</button>
+</form>
+<br>
+  <a href="/" class="btn btn-primary btn-lg btn-block btn-danger">RETURN HOME</a>
+
+</div>
+<br>

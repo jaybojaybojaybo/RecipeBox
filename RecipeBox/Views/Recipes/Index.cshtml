@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@if(@Model.Count == 0)
+{
+  <h3><i>Uh oh looks like there is no recipes for you to look at...</i></h3>
+}
+
+@if(@Model.Count > 0)
+{
+
+<table class="table">
+  <thead>
+    <tr>
+        <th>Recipe Name</th>
+        <th>🍳 Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(var recipe in @Model)
+  {
+    <tr>
+               <td><a href="/recipes/@recipe.GetId()">@recipe.GetName()</a></td>
+
+           <td><a href="/recipes/@recipe.GetId()/delete" class="btn btn-danger">x</a></td>
+         </tr>
+  }
+  </tbody>
+  </table>
+}
+
+<a href="/recipes/create" class="btn btn-primary btn-lg btn-block btn-danger">ADD NEW RECIPE</a>
