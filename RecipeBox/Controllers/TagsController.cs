@@ -30,7 +30,20 @@ namespace RecipeBox.Controllers
     [HttpPost("/tags/create")]
     public ActionResult Create()
     {
-      return View();
+      Tag newTag = new Tag(Request.Form["name"]);
+      newTag.Save();
+
+      List<Tag> allTags = Tag.GetAll();
+      return View("Index", allTags);
+    }
+
+    [HttpGet("/tags/{id}/delete")]
+    public ActionResult DeleteTag(int id)
+    {
+      Tag findTag = Tag.Find(id);
+     findTag.DeleteTag(findTag.GetId());
+     List<Tag> allTags = Tag.GetAll();
+     return RedirectToAction("Index");
     }
   }
 }

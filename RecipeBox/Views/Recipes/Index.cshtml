@@ -22,10 +22,10 @@
   @foreach(var recipe in @Model)
   {
     <tr>
-               <td><a href="/recipes/@recipe.GetId()">@recipe.GetName()</a></td>
-
-           <td><a href="/recipes/@recipe.GetId()/delete" class="btn btn-danger">x</a></td>
-         </tr>
+      <td><a href="/recipes/@recipe.GetId()/details">@recipe.GetName()</a></td>
+      <td><a href="/recipes/wally">@recipe.GetRating()</a></td>
+      <td><a href="/recipes/@recipe.GetId()/delete" class="btn btn-danger">x</a></td>
+    </tr>
   }
   </tbody>
   </table>

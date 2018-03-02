@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>@Model["recipes"].GetName()</h2>
+<h4>Wally Rating:@Model["recipes"].GetRating()/5</h4>
+<div class="jumbotron">
+<h2><kbd>Instructions</kbd></h2>
+<br>
+<p>@Model["recipes"].GetInstruction()</p>
+
+@foreach(var ingredient in @Model["ingredients"])
+        {
+
+            <p>@ingredient.GetName()</p>
+
+        }
+
+@foreach(var tag in @Model["tags"])
+        {
+
+              @tag.GetName()
+
+        }
+
+      </div>
+
+<a href="/recipes/create" class="btn btn-primary btn-lg btn-block btn-danger">ADD NEW RECIPE</a>
+<br>
+<br>
+<a href="/recipes" class="btn btn-primary btn-lg btn-block btn-danger">SEARCH BY RECIPE</a>
+
+<a href="/" class="btn btn-primary btn-lg btn-block btn-danger">Home</a>

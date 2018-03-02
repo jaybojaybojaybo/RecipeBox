@@ -30,7 +30,20 @@ namespace RecipeBox.Controllers
     [HttpPost("/ingredients/create")]
     public ActionResult Create()
     {
-      return View();
+      Ingredient newIngredient = new Ingredient(Request.Form["name"]);
+      newIngredient.Save();
+
+      List<Ingredient> allIngredients = Ingredient.GetAll();
+      return View("Index", allIngredients);
+    }
+
+    [HttpGet("/ingredients/{id}/delete")]
+    public ActionResult DeleteIngredient(int id)
+    {
+      Ingredient findIngredient = Ingredient.Find(id);
+     findIngredient.DeleteIngredient(findIngredient.GetId());
+     List<Ingredient> allIngredients = Ingredient.GetAll();
+     return RedirectToAction("Index");
     }
   }
 }

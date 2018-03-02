@@ -100,18 +100,20 @@ namespace RecipeBox.Models
       _instruction = newInstruction;
     }
 
-
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
-     conn.Open();
+      conn.Open();
 
-     var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"INSERT INTO recipes (name) VALUES (@RecipeName);";
-     cmd.Parameters.Add(new MySqlParameter("@RecipeName", this._name));
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO recipes (name, rating, instruction) VALUES (@RecipeName, @RecipeRating, @RecipeInstruction);";
 
-     cmd.ExecuteNonQuery();
-     _id = (int) cmd.LastInsertedId;
+      cmd.Parameters.Add(new MySqlParameter("@RecipeName", _name));
+      cmd.Parameters.Add(new MySqlParameter("@RecipeRating", _rating));
+      cmd.Parameters.Add(new MySqlParameter("@RecipeInstruction", _instruction));
+
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
 
       conn.Close();
       if (conn != null)
@@ -377,14 +379,15 @@ namespace RecipeBox.Models
         return recipes;
     }
 
-      public void BreakString()
-      {
-        string[] separators = {",", " ", "."};
-        string[] words = _ingredient.ToString().Split(separators, StringSplitOptions.RemoveEmptyEntries);
-        for (int index = 0; index < words.Length; index ++)
-        {
-            _instruction.Add(words[index]);
-        }
-      }
+      //SAVE FOR LATER
+      // public void BreakString()
+      // {
+      //   string[] separators = {",", " ", "."};
+      //   string[] words = _ingredient.ToString().Split(separators, StringSplitOptions.RemoveEmptyEntries);
+      //   for (int index = 0; index < words.Length; index ++)
+      //   {
+      //       _instruction.Add(words[index]);
+      //   }
+      // }
   }
 }

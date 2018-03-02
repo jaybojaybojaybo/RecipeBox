@@ -5,16 +5,23 @@
 
 @if(@Model.Count == 0)
 {
-  <h3><i>Uh oh looks like there is no ingredients for you to look at...</i></h3>
+  <h3><i>Uh oh looks like there is no ingredients for you to look at... you probably should add an ingredient, or kindly leave this site because clearly you have no idea what you're doing. </i></h3>
+  <br>
+  <div class="text-center">
+  <img src="../img/no_ingredients.png" class="img-fluid" alt="Responsive image" style="width:40%; border-radius: 10em;">
+  <br>
+  </div>
+
 }
 
 @if(@Model.Count > 0)
 {
 
-<table class="table">
+<table class="table text-left">
   <thead>
     <tr>
         <th>Ingredient Name</th>
+        <th class="text-right">delete</th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +30,7 @@
     <tr>
        <td><a href="/ingredients/@ingredient.GetId()">@ingredient.GetName()</a></td>
 
-       <td><a href="/ingredients/@ingredient.GetId()/delete" class="btn btn-danger">x</a></td>
+       <td class="text-right"><a href="/ingredients/@ingredient.GetId()/delete" class="btn btn-secondary text-right">x</a></td>
      </tr>
   }
   </tbody>
